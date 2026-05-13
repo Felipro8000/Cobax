@@ -27,18 +27,22 @@ int main (){
                 break;
             case 1: //
                 break;
-            case 2: //lw
+                
+            case 2: 
                 unsigned int guardar = (instruccion >> 4) & 0b1111;
                 unsigned int lectura = (instruccion >> 8) & 0b1111;
                 unsigned int offset = (instruccion >> 12) & 0b11111111;
-                estado.regs[guardar] = estado.data_memory[estado.regs[lectura] + offset];
+                estado.regs[guardar] = estado.data_memory[estado.regs[lectura] + offset] + (estado.data_memory[estado.regs[lectura] + offset + 1] << 8);
                 break;
-            case 3: //sw
+
+            case 3:
                 unsigned int guardar = (instruccion >> 4) & 0b1111;
                 unsigned int lectura = (instruccion >> 8) & 0b1111;
                 unsigned int offset = (instruccion >> 12) & 0b11111111;
-                estado.data_memory[estado.regs[lectura] + offset] = estado.regs[guardar];
+                estado.data_memory[estado.regs[lectura] + offset] = estado.regs[guardar] & 0b11111111;
+                estado.data_memory[estado.regs[lectura] + offset + 1] = (estado.regs[guardar] >> 8) & 0b11111111;
                 break;
+                
             case 4: //beq
                 unsigned int v1 = (instruccion >> 4) & 0b1111;
                 unsigned int v2 = (instruccion >> 8) & 0b1111;
@@ -47,9 +51,10 @@ int main (){
                     estado.pc += (offset << 24) >> 24;
                 }
                 break;
-            case 5: //j
-                unsigned int offset = (instruccios >> 12);
-
+            case 14: //j
+                unsigned int offset = (instruccion >> 4);
+                estado.pc = offset;
+                break;
             default:
                 break;
         }
