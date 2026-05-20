@@ -1,5 +1,5 @@
 
-#Componente LUI:
+# Componente LUI:
 
 ## Elementos
 Dos Spliters 16 8 : 8
