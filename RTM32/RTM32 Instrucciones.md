@@ -1,3 +1,6 @@
+# Documento de google:
+https://docs.google.com/document/d/1HEiqleXe3tDimIrBcnSem4nCSjX84KSTt9lX8zuXZ9A/edit?tab=t.0
+
 # SSL (Shift Left Logical):
 
 **Instrucciones:**  
